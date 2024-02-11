@@ -1,9 +1,9 @@
-import StudentInfo from './student-info';
+import NewItem from './new-item';
 import Link from 'next/link';
 
 export default function Page() {
-    return (
-      <main>
+  return (
+    <div>
         <div className="text-center mt-4">
         <Link href="/">
           <div className="text-blue-500 hover:text-blue-700 transition duration-300">
@@ -11,9 +11,7 @@ export default function Page() {
             </div>
         </Link>
       </div>
-        <h1>Shopping List</h1>
-        <StudentInfo></StudentInfo>
-      </main>
-    );
+      <NewItem />
+    </div>
+  );
 }
-  
