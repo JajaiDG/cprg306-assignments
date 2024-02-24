@@ -1,53 +1,95 @@
-"use client";
+// item-list.js
+import React from 'react';
+import Item from './item'; // Ensure this path is correct
 
-import React, { useState } from 'react';
-import Item from './item';
-import itemsData from '../week-5/items.json';
+const item1 = {
+  name: "milk, 4 L 🥛",
+  quantity: 1,
+  category: "dairy",
+};
+
+const item2 = {
+  name: "bread 🍞",
+  quantity: 2,
+  category: "bakery",
+};
+
+const item3 = {
+  name: "eggs, dozen 🥚",
+  quantity: 2,
+  category: "dairy",
+};
+
+const item4 = {
+  name: "bananas 🍌",
+  quantity: 6,
+  category: "produce",
+};
+
+const item5 = {
+  name: "broccoli 🥦",
+  quantity: 3,
+  category: "produce",
+};
+
+const item6 = {
+  name: "chicken breasts, 1 kg 🍗",
+  quantity: 1,
+  category: "meat",
+};
+
+const item7 = {
+  name: "pasta sauce 🍝",
+  quantity: 3,
+  category: "canned goods",
+};
+
+const item8 = {
+  name: "spaghetti, 454 g 🍝",
+  quantity: 2,
+  category: "dry goods",
+};
+
+const item9 = {
+  name: "toilet paper, 12 pack 🧻",
+  quantity: 1,
+  category: "household",
+};
+
+const item10 = {
+  name: "paper towels, 6 pack",
+  quantity: 1,
+  category: "household",
+};
+
+const item11 = {
+  name: "dish soap 🍽️",
+  quantity: 1,
+  category: "household",
+};
+
+const item12 = {
+  name: "hand soap 🧼",
+  quantity: 4,
+  category: "household",
+};
 
 const ItemList = () => {
-  const [sortBy, setSortBy] = useState('name');
-  const [groupedByCategory, setGroupedByCategory] = useState(false);
-
-  let sortedItems = itemsData.sort((a, b) => {
-    if (sortBy === 'name') {
-      return a.name.localeCompare(b.name);
-    } else if (sortBy === 'category') {
-      return a.category.localeCompare(b.category);
-    }
-    return 0;
-  });
-
-  if (groupedByCategory) {
-    sortedItems = sortedItems.reduce((acc, item) => {
-      (acc[item.category] = acc[item.category] || []).push(item);
-      return acc;
-    }, {});
-  }
-
   return (
-    <div className="flex flex-col items-center">
-      <div className="my-4">
-        <button onClick={() => { setSortBy('name'); setGroupedByCategory(false); }} className={`px-4 py-2 rounded-lg mr-2 ${sortBy === 'name' && !groupedByCategory ? 'bg-blue-500 text-white' : 'bg-blue-500'}`}>Sort by Name</button>
-        <button onClick={() => { setSortBy('category'); setGroupedByCategory(false); }} className={`px-4 py-2 rounded-lg mr-2 ${sortBy === 'category' && !groupedByCategory ? 'bg-green-500 text-white' : 'bg-green-500'}`}>Sort by Category</button>
-        <button onClick={() => setGroupedByCategory(true)} className={`px-4 py-2 rounded-lg ${groupedByCategory ? 'bg-red-500 text-white' : 'bg-red-500'}`}>Group by Category</button>
-      </div>
-      <ul className="list-none w-full text-left">
-        {groupedByCategory ? (
-          Object.entries(sortedItems).map(([category, items]) => (
-            <li key={category} className="mb-4">
-              <h3 className="capitalize font-bold text-lg mb-2">{category}</h3>
-              <ul>
-                {items.map(item => (
-                  <Item key={item.id} name={item.name} quantity={item.quantity} category={item.category} />
-                ))}
-              </ul>
-            </li>
-          ))
-        ) : (
-          sortedItems.map(item => (
-            <Item key={item.id} name={item.name} quantity={item.quantity} category={item.category} />
-          ))
-        )}
+    <div className="container mx-auto">
+      <ul className="list-none">
+        <Item key="item1" {...item1} />
+        <Item key="item2" {...item2} />
+        <Item key="item3" {...item3} />
+        <Item key="item4" {...item4} />
+        <Item key="item5" {...item5} />
+        <Item key="item6" {...item6} />
+        <Item key="item7" {...item7} />
+        <Item key="item8" {...item8} />
+        <Item key="item9" {...item9} />
+        <Item key="item10" {...item10} />
+        <Item key="item11" {...item11} />
+        <Item key="item12" {...item12} />
       </ul>
     </div>
   );
