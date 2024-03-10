@@ -21,12 +21,12 @@ export default function NewItem({ onAddItem }) {
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto my-8 bg-white shadow-md rounded-lg p-6 space-y-4">
       <h2 className="text-lg font-semibold text-black">Add New Item</h2>
-
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-black">Name</label>
         <input
           type="text"
           id="name"
+          placeholder="Enter new item"
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -39,7 +39,6 @@ export default function NewItem({ onAddItem }) {
         <input
           type="number"
           id="quantity"
-          placeholder="Enter new item"
           required
           min="1"
           max="99"
