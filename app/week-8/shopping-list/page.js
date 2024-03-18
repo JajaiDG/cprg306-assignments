@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useUserAuth } from '../_utils/auth-context';
 import ItemList from './item-list';
 import Link from 'next/link';
 import NewItem from './new-item';
@@ -8,9 +9,16 @@ import itemsData from './items.json';
 import MealIdeas from './meal-ideas';
 
 function Page() {
+  const { user } = useUserAuth();
   const [items, setItems] = useState(itemsData);
   const [selectedItemName, setSelectedItemName] = useState('');
   
+  useEffect(() => {
+    if (!user) {
+      window.location.href = "/week-8"; 
+    }
+  }, [user]);
+
   const handleAddItem = (newItem) => {
     setItems(currentItems => [...currentItems, newItem]);
   };
